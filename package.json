@@ -1,0 +1,119 @@
+{
+	"name": "appdrag-deployment-helper",
+	"displayName": "AppDrag Deployment Helper",
+	"description": "TBA",
+	"version": "0.0.1",
+	"engines": {
+		"vscode": "^1.42.0"
+	},
+	"categories": [
+		"Other"
+	],
+	"activationEvents": [
+		"*"
+	],
+	"main": "./out/extension.js",
+	"contributes": {
+		"commands": [
+			{
+				"command": "extension.setup.login",
+				"title": "Login",
+				"category": "AppDrag"
+			},
+			{
+				"command": "extension.setup.init",
+				"title": "Init",
+				"category": "AppDrag"
+			},
+			{
+				"command": "extension.filesystem.push",
+				"title": "Filesystem Push",
+				"category": "AppDrag"
+			},
+			{
+				"command": "extension.filesystem.pull",
+				"title": "Filesystem Pull",
+				"category": "AppDrag"
+			},
+			{
+				"command": "extension.cloudbackend.push",
+				"title": "Cloudbackend Push",
+				"category": "AppDrag"
+			},
+			{
+				"command": "extension.cloudbackend.pull",
+				"title": "Cloudbackend Pull",
+				"category": "AppDrag"
+      },
+      {
+				"command": "extension.cloudbackend.pullsingle",
+				"title": "Cloudbackend Pull (Single Function)",
+				"category": "AppDrag"
+      },
+      {
+				"command": "extension.cloudbackend.pushsingle",
+				"title": "Cloudbackend Push (Single Function)",
+				"category": "AppDrag"
+      },
+      {
+				"command": "extension.database.push",
+				"title": "Database Push",
+				"category": "AppDrag"
+			},
+			{
+				"command": "extension.database.pull",
+				"title": "Database Pull",
+				"category": "AppDrag"
+      },
+      {
+				"command": "extension.deploy.filesystem",
+				"title": "Deploy Filesystem",
+				"category": "AppDrag"
+      },
+      {
+				"command": "extension.deploy.cloudbackend",
+				"title": "Deploy CloudBackend",
+				"category": "AppDrag"
+      },
+      {
+				"command": "extension.deploy.Database",
+				"title": "Deploy Database",
+				"category": "AppDrag"
+      }
+		]
+	},
+	"scripts": {
+		"vscode:prepublish": "npm run compile",
+		"compile": "tsc -p ./",
+		"watch": "tsc -watch -p ./",
+		"pretest": "npm run compile",
+		"test": "node ./out/test/runTest.js"
+	},
+	"devDependencies": {
+		"@types/archiver": "^3.1.0",
+		"@types/configstore": "^4.0.0",
+		"@types/crypto-js": "^3.1.43",
+		"@types/glob": "^7.1.1",
+		"@types/mocha": "^5.2.7",
+		"@types/node": "^12.11.7",
+		"@types/request-promise-native": "^1.0.17",
+		"@types/vscode": "^1.42.0",
+		"glob": "^7.1.5",
+		"mocha": "^7.1.1",
+		"tslint": "^5.20.0",
+		"typescript": "^3.6.4",
+		"vscode-test": "^1.2.2"
+	},
+	"dependencies": {
+		"@types/chalk": "^2.2.0",
+		"@types/node-fetch": "^2.5.7",
+		"@types/unzipper": "^0.10.3",
+		"archiver": "^3.1.1",
+		"chalk": "^4.0.0",
+		"configstore": "^5.0.1",
+		"crypto-js": "^4.0.0",
+		"node-fetch": "^2.6.0",
+		"request-promise-native": "^1.0.8",
+		"unzipper": "^0.10.11"
+	}
+}
