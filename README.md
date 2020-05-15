@@ -1,6 +1,5 @@
 # appdrag-deployment-helper README
-
-This is the README for your extension "appdrag-deployment-helper". After writing up a brief description, we recommend including the following sections.
+This is the VSCode extension for AppDrag. This extension much like the CLI will help you code your AppDrag projects locally and/or deploy them aswell.
 
 ## Features
 
