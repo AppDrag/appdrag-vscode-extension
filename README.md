@@ -3,7 +3,7 @@ This is the VSCode extension for AppDrag. This extension much like the CLI will 
 
 ## Features
 
-# All commands start with 'AppDrag :'
+### All commands start with 'AppDrag :'
 
 ### Filesystem
   
