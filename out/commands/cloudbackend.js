@@ -28,6 +28,7 @@ function apiPush() {
         let basePath = `${currentFolder.uri.fsPath}/CloudBackend/code/`;
         let functionList = fs.readdirSync(basePath);
         yield cloudbackend_1.pushFunctions(appId, token, currentFolder.uri.fsPath, basePath, functionList);
+        vscode.window.showInformationMessage('Done !');
     });
 }
 exports.apiPush = apiPush;
@@ -52,6 +53,7 @@ function apiPushSingle() {
             functionList = [...funcInput];
         }
         yield cloudbackend_1.pushFunctions(appId, token, currentFolder.uri.fsPath, basePath, functionList);
+        vscode.window.showInformationMessage('Done !');
     });
 }
 exports.apiPushSingle = apiPushSingle;

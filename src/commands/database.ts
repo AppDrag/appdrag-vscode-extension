@@ -31,6 +31,7 @@ export async function databasePush() {
     throw new Error('Please pick a file');
   }
   await pushDbToCloudBackend(appId, token, `${currentFolder.uri.fsPath}/${sqlFile}`);
+  vscode.window.showInformationMessage('Done !');
 }
 
 export async function databasePull() {

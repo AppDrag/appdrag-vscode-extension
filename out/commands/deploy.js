@@ -84,7 +84,6 @@ function exportProject() {
                 fs.mkdirSync(absolutePath);
             }
         }
-        console.log(`${currentFolder.uri.fsPath}/${deployFolder}DB/`);
         vscode.window.showInformationMessage('Pulling...');
         yield deployDatabase(appId, token, currentFolder, absolutePath);
         yield deployFilesystem(appId, token, currentFolder, absolutePath);

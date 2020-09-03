@@ -17,6 +17,7 @@ export async function apiPush() {
   let basePath : string = `${currentFolder.uri.fsPath}/CloudBackend/code/`;
   let functionList = fs.readdirSync(basePath);
   await pushFunctions(appId, token, currentFolder.uri.fsPath, basePath, functionList);
+  vscode.window.showInformationMessage('Done !');
 }
 
 export async function apiPushSingle() {
@@ -39,6 +40,7 @@ export async function apiPushSingle() {
     functionList = [...funcInput];   
   }
   await pushFunctions(appId, token, currentFolder.uri.fsPath, basePath, functionList);
+  vscode.window.showInformationMessage('Done !');
 }
 
 export async function apiPull() {

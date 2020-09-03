@@ -41,6 +41,7 @@ function databasePush() {
             throw new Error('Please pick a file');
         }
         yield database_1.pushDbToCloudBackend(appId, token, `${currentFolder.uri.fsPath}/${sqlFile}`);
+        vscode.window.showInformationMessage('Done !');
     });
 }
 exports.databasePush = databasePush;

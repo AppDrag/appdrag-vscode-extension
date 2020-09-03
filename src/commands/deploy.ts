@@ -70,7 +70,6 @@ export async function exportProject() {
       fs.mkdirSync(absolutePath);
     }
   }
-  console.log(`${currentFolder.uri.fsPath}/${deployFolder}DB/`);
   vscode.window.showInformationMessage('Pulling...');
   await deployDatabase(appId, token, currentFolder, absolutePath);
   await deployFilesystem(appId, token, currentFolder, absolutePath);
