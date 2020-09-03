@@ -16,7 +16,7 @@ export async function login() {
                 if (code) {
                     let response_code = await codeRequest(email, hash, code);
                     if (response_code.Table) {
-                        vscode.window.showInformationMessage('Creating/Updating local config...');
+                        vscode.window.showInformationMessage('Logged in !');
                         let user_data = {
                             token : response_code.Table[0].token,
                             firstName : response_code.Table[0].firstName,
@@ -48,5 +48,6 @@ export async function init() {
     let cfg_file = vscode.Uri.file(vscode.workspace.rootPath + '/.appdrag');
     if (vscode.workspace.workspaceFolders) {
         await vscode.workspace.fs.writeFile(cfg_file, Buffer.from(JSON.stringify({appID})));
+        vscode.window.showInformationMessage('Init file created !');
     }
 }

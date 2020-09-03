@@ -2,7 +2,6 @@
 import * as vscode from 'vscode';
 import * as archiver from 'archiver';
 import * as fs from 'fs';
-import * as chalk from 'chalk';
 import { config, refreshToken } from './common';
 import { createZip, getSignedURL, pushToAwsS3 } from '../utils/filesystem';
 const fetch = require('node-fetch');

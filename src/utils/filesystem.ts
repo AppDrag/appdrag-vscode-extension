@@ -1,7 +1,6 @@
 import * as vscode from 'vscode';
 import * as archiver from 'archiver';
 import * as fs from 'fs';
-import * as chalk from 'chalk';
 import { config, refreshToken } from './common';
 const fetch = require('node-fetch');
 
