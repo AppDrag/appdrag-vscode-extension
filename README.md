@@ -2,8 +2,8 @@
 This is the VSCode extension for AppDrag. This extension much like the CLI will help you code your AppDrag projects locally and/or deploy them aswell.
 
 ## Features
-
 ### All commands start with 'AppDrag :'
+![AppDragCommands](https://raw.githubusercontent.com/AppDrag/appdrag-vscode-extension/master/resources/appdrag-fullcommands.png)
 
 ### Filesystem
   
