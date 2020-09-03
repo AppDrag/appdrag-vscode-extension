@@ -1,37 +1,36 @@
 import * as vscode from 'vscode';
-import * as requestNative from 'request-promise-native';
+const fetch = require('node-fetch');
 import { URLSearchParams } from 'url';
 
-export async function loginRequest (email : string, password : string): Promise<requestNative.RequestPromise> {
+export async function loginRequest (email : string, password : string): Promise<any> {
     let data = {
         command : 'Login',
         email : email,
         password : password
     };
 
-    let response = await requestNative({
+    let response = await fetch("https://api.appdrag.com/api.aspx",{
         method : 'POST',
         headers : {'Content-Type' :'application/x-www-form-urlencoded;charset=utf-8'},
-        uri : "https://api.appdrag.com/api.aspx",
-        body : new URLSearchParams(data).toString(),
+        body : new URLSearchParams(data),
     });
-    return response;
+    console.log(response)
+    return await response.json();
 }
 
-export async function codeRequest (email : string, password : string, code : string): Promise<requestNative.RequestPromise> {
+export async function codeRequest (email : string, password : string, code : string): Promise<any> {
     let data = {
         command : 'Login',
         email : email,
         password : password,
         verificationCode : code
     };
-    let response = await requestNative({
+    let response = await fetch("https://api.appdrag.com/api.aspx", {
         method : 'POST',
         headers : {'Content-Type' :'application/x-www-form-urlencoded;charset=utf-8'},
-        uri : "https://api.appdrag.com/api.aspx",
         body : new URLSearchParams(data).toString(),
     });
-    return response;
+    return await response.json();
 }
 
 export async function getAppId(folderUri : vscode.Uri) : Promise<string | undefined> {

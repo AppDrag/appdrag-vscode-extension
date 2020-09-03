@@ -21,13 +21,11 @@ function login() {
             if (password) {
                 let hash = CryptoJS.SHA512(12 + password + 'APPALLIN').toString();
                 let loginRes = yield setup_1.loginRequest(email, hash);
-                loginRes = JSON.parse(loginRes);
                 if (loginRes.status === 'OK') {
                     vscode.window.showInformationMessage('Check your mailbox, you should receive a verification code.');
                     let code = yield vscode.window.showInputBox({ ignoreFocusOut: true, prompt: 'Type in your Verification Code' });
                     if (code) {
                         let response_code = yield setup_1.codeRequest(email, hash, code);
-                        response_code = JSON.parse(response_code);
                         if (response_code.Table) {
                             vscode.window.showInformationMessage('Creating/Updating local config...');
                             let user_data = {
@@ -47,6 +45,9 @@ function login() {
                     else {
                         throw new Error('Type in a verification code');
                     }
+                }
+                else {
+                    throw new Error('Wrong credentials');
                 }
             }
             else {

@@ -18,10 +18,10 @@ export const downloadDb = async (appId: string, token: string, absolutePath: str
   let databaseUrl = await fetch('https://api.appdrag.com/CloudBackend.aspx', opts);
   databaseUrl = await databaseUrl.json();
   if (databaseUrl.status !== 'OK') {
-    throw new Error('Error trying to fetch database (You can only fetch db file once in an hour)');
+    // throw new Error('Error trying to fetch database (You can only fetch db file once in an hour)');
   }
   databaseUrl = databaseUrl.url;
-  let file = fs.createWriteStream(`${absolutePath}/${appId}_backup.sql`);
+  let file = fs.createWriteStream(`${absolutePath}`);
   let response = await fetch(databaseUrl, {
     method: 'GET',
   });

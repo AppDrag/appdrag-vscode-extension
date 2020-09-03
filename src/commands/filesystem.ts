@@ -14,6 +14,9 @@ export async function filesystemPush(){
     throw new Error('Please run the init command first.');
   }
   let token = config.get('token');
+  if (!token) {
+    throw new Error('Please login first.');
+  }
   let filesInFolder = await vscode.workspace.fs.readDirectory(currentFolder.uri);
   let files : string[] = [];
   filesInFolder.forEach(file => {
@@ -55,6 +58,9 @@ export async function filesystemPush(){
 
 export async function filesystemPull() {
   let token = config.get('token');
+  if (!token) {
+    throw new Error('Please login first.');
+  }
   let currentFolder = await getCurrentFolder();
   if (!currentFolder) {
     throw new Error('Please select a valid folder.');
@@ -68,6 +74,7 @@ export async function filesystemPull() {
     folder = '';
   }
   let files = await getDirectoryListing(token, appId, folder);
+  console.log(files, token, appId);
   if (files.status === 'KO') {
     let token_ref = config.get('refreshToken');
     await refreshToken(token_ref);

@@ -79,6 +79,7 @@ export const getFunctionURL =  async (data : any) => {
     headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8' },
     body: new URLSearchParams(data)
   };
+  console.log(data);
   let res = await fetch('https://api.appdrag.com/CloudBackend.aspx', opts);
   res = await res.json();
   return res.url;
@@ -96,7 +97,7 @@ export const writeScriptFile = (functionList: any[], absolutePath : string) => {
         });
       }
     });
-    fs.writeFileSync(absolutePath+'/install.sh', 'npm install ' + modules.join('\nnpm install ').replace(/,/g, " "));
+    fs.writeFileSync(absolutePath+'/install.sh', 'npm init --force --yes\nnpm install ' + modules.join('\nnpm install ').replace(/,/g, " "));
 };
 
 interface FuncObject {

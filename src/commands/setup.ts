@@ -9,14 +9,12 @@ export async function login() {
         let password = await vscode.window.showInputBox({ignoreFocusOut : true, password:true, prompt : 'Type in your Password'});
         if (password) {
             let hash = CryptoJS.SHA512(12 + password + 'APPALLIN').toString();
-            let loginRes = await loginRequest(email,hash);
-            loginRes = JSON.parse(loginRes);
+            let loginRes = await loginRequest(email, hash);
             if (loginRes.status === 'OK') {
                 vscode.window.showInformationMessage('Check your mailbox, you should receive a verification code.');
                 let code = await vscode.window.showInputBox({ignoreFocusOut : true, prompt : 'Type in your Verification Code'});
                 if (code) {
                     let response_code = await codeRequest(email, hash, code);
-                    response_code = JSON.parse(response_code);
                     if (response_code.Table) {
                         vscode.window.showInformationMessage('Creating/Updating local config...');
                         let user_data = {
@@ -34,6 +32,8 @@ export async function login() {
                 } else {
                     throw new Error('Type in a verification code');
                 }
+            } else {
+                throw new Error('Wrong credentials');
             }
         } else {
             throw new Error('Type in your password');

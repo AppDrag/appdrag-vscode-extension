@@ -80,6 +80,7 @@ exports.getFunctionURL = (data) => __awaiter(void 0, void 0, void 0, function* (
         headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8' },
         body: new URLSearchParams(data)
     };
+    console.log(data);
     let res = yield fetch('https://api.appdrag.com/CloudBackend.aspx', opts);
     res = yield res.json();
     return res.url;
@@ -96,7 +97,7 @@ exports.writeScriptFile = (functionList, absolutePath) => {
             });
         }
     });
-    fs.writeFileSync(absolutePath + '/install.sh', 'npm install ' + modules.join('\nnpm install ').replace(/,/g, " "));
+    fs.writeFileSync(absolutePath + '/install.sh', 'npm init --force --yes\nnpm install ' + modules.join('\nnpm install ').replace(/,/g, " "));
 };
 exports.apiJson = (api, appId) => {
     let finalObj = {

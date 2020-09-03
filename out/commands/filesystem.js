@@ -25,6 +25,9 @@ function filesystemPush() {
             throw new Error('Please run the init command first.');
         }
         let token = common_1.config.get('token');
+        if (!token) {
+            throw new Error('Please login first.');
+        }
         let filesInFolder = yield vscode.workspace.fs.readDirectory(currentFolder.uri);
         let files = [];
         filesInFolder.forEach(file => {
@@ -70,6 +73,9 @@ exports.filesystemPush = filesystemPush;
 function filesystemPull() {
     return __awaiter(this, void 0, void 0, function* () {
         let token = common_1.config.get('token');
+        if (!token) {
+            throw new Error('Please login first.');
+        }
         let currentFolder = yield common_1.getCurrentFolder();
         if (!currentFolder) {
             throw new Error('Please select a valid folder.');
@@ -83,6 +89,7 @@ function filesystemPull() {
             folder = '';
         }
         let files = yield filesystem_1.getDirectoryListing(token, appId, folder);
+        console.log(files, token, appId);
         if (files.status === 'KO') {
             let token_ref = common_1.config.get('refreshToken');
             yield common_1.refreshToken(token_ref);

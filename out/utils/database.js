@@ -27,10 +27,10 @@ exports.downloadDb = (appId, token, absolutePath) => __awaiter(void 0, void 0, v
     let databaseUrl = yield fetch('https://api.appdrag.com/CloudBackend.aspx', opts);
     databaseUrl = yield databaseUrl.json();
     if (databaseUrl.status !== 'OK') {
-        throw new Error('Error trying to fetch database (You can only fetch db file once in an hour)');
+        // throw new Error('Error trying to fetch database (You can only fetch db file once in an hour)');
     }
     databaseUrl = databaseUrl.url;
-    let file = fs.createWriteStream(`${absolutePath}/${appId}_backup.sql`);
+    let file = fs.createWriteStream(`${absolutePath}`);
     let response = yield fetch(databaseUrl, {
         method: 'GET',
     });

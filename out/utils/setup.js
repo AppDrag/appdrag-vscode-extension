@@ -10,7 +10,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const vscode = require("vscode");
-const requestNative = require("request-promise-native");
+const fetch = require('node-fetch');
 const url_1 = require("url");
 function loginRequest(email, password) {
     return __awaiter(this, void 0, void 0, function* () {
@@ -19,13 +19,13 @@ function loginRequest(email, password) {
             email: email,
             password: password
         };
-        let response = yield requestNative({
+        let response = yield fetch("https://api.appdrag.com/api.aspx", {
             method: 'POST',
             headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8' },
-            uri: "https://api.appdrag.com/api.aspx",
-            body: new url_1.URLSearchParams(data).toString(),
+            body: new url_1.URLSearchParams(data),
         });
-        return response;
+        console.log(response);
+        return yield response.json();
     });
 }
 exports.loginRequest = loginRequest;
@@ -37,13 +37,12 @@ function codeRequest(email, password, code) {
             password: password,
             verificationCode: code
         };
-        let response = yield requestNative({
+        let response = yield fetch("https://api.appdrag.com/api.aspx", {
             method: 'POST',
             headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8' },
-            uri: "https://api.appdrag.com/api.aspx",
             body: new url_1.URLSearchParams(data).toString(),
         });
-        return response;
+        return yield response.json();
     });
 }
 exports.codeRequest = codeRequest;

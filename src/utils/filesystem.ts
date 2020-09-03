@@ -161,12 +161,11 @@ export const parseDirectory =  async (token : string, appId : string, files : an
       }
     } else {
       let file = fs.createWriteStream(`${absolutePath}/${path}`, {'encoding': 'utf-8'});
-      let response = await fetch(`https://s3-eu-west-1.amazonaws.com/dev.appdrag.com/${appId}/${path}`, {
+      let response = await fetch(`https://s3-eu-west-1.amazonaws.com/dev.appdrag.com/${appId}/${encodeURI(path)}`, {
         method: 'GET'
       });
       response.body.pipe(file);
       file.on('finish', () => {
-        console.log(chalk.green(`done writing : ${path}`));
         file.close();
         if (path === lastfile) {
           return true;
@@ -185,7 +184,7 @@ export const isFolder = async (token : string, appId : string, path : string, ab
 };
 
 export const pullSingleFile = async (appId: string, path: string, absolutePath: string) => {
-  let response = await fetch(`https://s3-eu-west-1.amazonaws.com/dev.appdrag.com/${appId}/${path}`, {
+  let response = await fetch(`https://s3-eu-west-1.amazonaws.com/dev.appdrag.com/${appId}/${encodeURI(path)}`, {
     method: 'GET'
   });
   if (response.status === 403) {

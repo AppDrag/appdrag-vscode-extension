@@ -11,7 +11,6 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 const archiver = require("archiver");
 const fs = require("fs");
-const chalk = require("chalk");
 const common_1 = require("./common");
 const fetch = require('node-fetch');
 exports.pushFiles = (appId, absolutePath, filePath, token, destPath) => __awaiter(void 0, void 0, void 0, function* () {
@@ -164,12 +163,11 @@ exports.parseDirectory = (token, appId, files, lastfile, currentPath, absolutePa
         }
         else {
             let file = fs.createWriteStream(`${absolutePath}/${path}`, { 'encoding': 'utf-8' });
-            let response = yield fetch(`https://s3-eu-west-1.amazonaws.com/dev.appdrag.com/${appId}/${path}`, {
+            let response = yield fetch(`https://s3-eu-west-1.amazonaws.com/dev.appdrag.com/${appId}/${encodeURI(path)}`, {
                 method: 'GET'
             });
             response.body.pipe(file);
             file.on('finish', () => {
-                console.log(chalk.green(`done writing : ${path}`));
                 file.close();
                 if (path === lastfile) {
                     return true;
@@ -186,7 +184,7 @@ exports.isFolder = (token, appId, path, absolutePath) => __awaiter(void 0, void 
     return newFiles;
 });
 exports.pullSingleFile = (appId, path, absolutePath) => __awaiter(void 0, void 0, void 0, function* () {
-    let response = yield fetch(`https://s3-eu-west-1.amazonaws.com/dev.appdrag.com/${appId}/${path}`, {
+    let response = yield fetch(`https://s3-eu-west-1.amazonaws.com/dev.appdrag.com/${appId}/${encodeURI(path)}`, {
         method: 'GET'
     });
     if (response.status === 403) {

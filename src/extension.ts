@@ -2,7 +2,7 @@
 // Import the module and reference it with the alias vscode in your code below
 import * as vscode from 'vscode';
 import { ServerResponse } from 'http';
-import { deployCloudBackend, deployDatabase, deployFilesystem } from './commands/deploy';
+import { exportProject } from './commands/deploy';
 import { login, init } from './commands/setup';
 import { filesystemPull, filesystemPush } from './commands/filesystem';
 import { apiPull, apiPush, apiPullSingle, apiPushSingle } from './commands/cloudbackend';
@@ -28,9 +28,7 @@ export function activate(context: vscode.ExtensionContext) {
     context.subscriptions.push(vscode.commands.registerCommand('extension.cloudbackend.pushsingle', apiPushSingle));
     context.subscriptions.push(vscode.commands.registerCommand('extension.database.pull', databasePull));
     context.subscriptions.push(vscode.commands.registerCommand('extension.database.push', databasePush));
-    context.subscriptions.push(vscode.commands.registerCommand('extension.deploy.filesystem', deployFilesystem));
-    context.subscriptions.push(vscode.commands.registerCommand('extension.deploy.cloudbackend', deployCloudBackend));
-    context.subscriptions.push(vscode.commands.registerCommand('extension.deploy.database', deployDatabase));
+    context.subscriptions.push(vscode.commands.registerCommand('extension.deploy.export', exportProject));
 }
 
 // this method is called when your extension is deactivated

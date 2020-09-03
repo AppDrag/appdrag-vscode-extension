@@ -17,17 +17,8 @@ const filesystem_1 = require("../utils/filesystem");
 const cloudbackend_1 = require("../utils/cloudbackend");
 const common_1 = require("../utils/common");
 const setup_1 = require("../utils/setup");
-function deployFilesystem() {
+function deployFilesystem(appId, token, currentFolder, absolutePath) {
     return __awaiter(this, void 0, void 0, function* () {
-        let currentFolder = yield common_1.getCurrentFolder();
-        if (!currentFolder) {
-            throw new Error('Please select a valid folder.');
-        }
-        const appId = yield setup_1.getAppId(currentFolder.uri);
-        if (!appId) {
-            throw new Error('Please run the init command first.');
-        }
-        let token = common_1.config.get('token');
         let files = yield filesystem_1.getDirectoryListing(token, appId, '');
         if (files.status === 'KO') {
             let token_ref = common_1.config.get('refreshToken');
@@ -38,33 +29,17 @@ function deployFilesystem() {
             }
         }
         let lastfile = files[files.length - 1].path;
-        let deployFolder = yield vscode.window.showInputBox({ ignoreFocusOut: true, prompt: 'Where do you want to deploy ( leave empty for root folder )' });
-        let absolutePath = `${currentFolder.uri.fsPath}/${deployFolder}`;
-        if (!deployFolder) {
-            deployFolder = '';
+        if (!fs.existsSync(`${absolutePath}/public`)) {
+            fs.mkdirSync(`${absolutePath}/public`);
         }
-        else {
-            if (!fs.existsSync(absolutePath)) {
-                fs.mkdirSync(absolutePath);
-            }
-        }
+        absolutePath += '/public';
         yield deploy_1.parseDirectory(token, appId, files, lastfile, '', absolutePath);
         deploy_1.parseHtmlFiles(appId, absolutePath);
         yield deploy_1.downloadResources(absolutePath);
     });
 }
-exports.deployFilesystem = deployFilesystem;
-function deployCloudBackend() {
+function deployCloudBackend(appId, token, currentFolder, absolutePath) {
     return __awaiter(this, void 0, void 0, function* () {
-        let currentFolder = yield common_1.getCurrentFolder();
-        if (!currentFolder) {
-            throw new Error('Please select a valid folder.');
-        }
-        const appId = yield setup_1.getAppId(currentFolder.uri);
-        if (!appId) {
-            throw new Error('Please run the init command first.');
-        }
-        let token = common_1.config.get('token');
         let response = yield cloudbackend_1.getFunctionsList(appId, token);
         if (response.status === 'KO') {
             let token_ref = common_1.config.get('refreshToken');
@@ -76,24 +51,21 @@ function deployCloudBackend() {
             return;
         }
         let functionList = response.Table;
-        let deployFolder = yield vscode.window.showInputBox({ ignoreFocusOut: true, prompt: 'Where do you want to deploy ( leave empty for root folder )' });
-        let absolutePath = `${currentFolder.uri.fsPath}/${deployFolder}`;
-        if (!deployFolder) {
-            deployFolder = '';
-        }
-        else {
-            if (!fs.existsSync(absolutePath)) {
-                fs.mkdirSync(absolutePath);
-            }
-        }
-        yield deploy_1.parseFunctionsDeploy(token, appId, functionList, absolutePath);
         cloudbackend_1.writeScriptFile(functionList, currentFolder.uri.fsPath);
-        fs.writeFileSync(currentFolder.uri.fsPath + '/api.json', cloudbackend_1.apiJson(functionList, appId));
-        vscode.window.showInformationMessage('Done !');
+        let cleanList = deploy_1.flattenFunctionList(functionList);
+        let apiKey = yield deploy_1.parseFunctionsDeploy(token, appId, cleanList, absolutePath);
+        deploy_1.appConfigJson(appId, cleanList, currentFolder.uri.fsPath, apiKey);
     });
 }
-exports.deployCloudBackend = deployCloudBackend;
-function deployDatabase() {
+function deployDatabase(appId, token, currentFolder, absolutePath) {
+    return __awaiter(this, void 0, void 0, function* () {
+        if (!fs.existsSync(`${absolutePath}/DB/`)) {
+            fs.mkdirSync(`${absolutePath}/DB/`);
+        }
+        yield database_1.downloadDb(appId, token, `${absolutePath}/DB/db.sql`);
+    });
+}
+function exportProject() {
     return __awaiter(this, void 0, void 0, function* () {
         let currentFolder = yield common_1.getCurrentFolder();
         if (!currentFolder) {
@@ -104,9 +76,21 @@ function deployDatabase() {
             throw new Error('Please run the init command first.');
         }
         let token = common_1.config.get('token');
-        yield database_1.downloadDb(appId, token, currentFolder.uri.fsPath);
+        let deployFolder = yield vscode.window.showInputBox({ ignoreFocusOut: true, prompt: 'Where do you want to deploy ( leave empty for root folder )' });
+        let absolutePath = `${currentFolder.uri.fsPath}`;
+        if (deployFolder) {
+            absolutePath += `/${deployFolder}`;
+            if (!fs.existsSync(absolutePath)) {
+                fs.mkdirSync(absolutePath);
+            }
+        }
+        console.log(`${currentFolder.uri.fsPath}/${deployFolder}DB/`);
+        vscode.window.showInformationMessage('Pulling...');
+        yield deployDatabase(appId, token, currentFolder, absolutePath);
+        yield deployFilesystem(appId, token, currentFolder, absolutePath);
+        yield deployCloudBackend(appId, token, currentFolder, absolutePath);
         vscode.window.showInformationMessage('Done !');
     });
 }
-exports.deployDatabase = deployDatabase;
+exports.exportProject = exportProject;
 //# sourceMappingURL=deploy.js.map

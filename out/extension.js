@@ -26,9 +26,7 @@ function activate(context) {
     context.subscriptions.push(vscode.commands.registerCommand('extension.cloudbackend.pushsingle', cloudbackend_1.apiPushSingle));
     context.subscriptions.push(vscode.commands.registerCommand('extension.database.pull', database_1.databasePull));
     context.subscriptions.push(vscode.commands.registerCommand('extension.database.push', database_1.databasePush));
-    context.subscriptions.push(vscode.commands.registerCommand('extension.deploy.filesystem', deploy_1.deployFilesystem));
-    context.subscriptions.push(vscode.commands.registerCommand('extension.deploy.cloudbackend', deploy_1.deployCloudBackend));
-    context.subscriptions.push(vscode.commands.registerCommand('extension.deploy.database', deploy_1.deployDatabase));
+    context.subscriptions.push(vscode.commands.registerCommand('extension.deploy.export', deploy_1.exportProject));
 }
 exports.activate = activate;
 // this method is called when your extension is deactivated
