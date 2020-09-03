@@ -86,7 +86,6 @@
 		"@types/glob": "^7.1.1",
 		"@types/mocha": "^5.2.7",
 		"@types/node": "^12.11.7",
-		"@types/request-promise-native": "^1.0.17",
 		"@types/vscode": "^1.42.0",
 		"glob": "^7.1.5",
 		"mocha": "^7.1.1",
@@ -95,15 +94,12 @@
 		"vscode-test": "^1.2.2"
 	},
 	"dependencies": {
-		"@types/chalk": "^2.2.0",
 		"@types/node-fetch": "^2.5.7",
 		"@types/unzipper": "^0.10.3",
 		"archiver": "^3.1.1",
-		"chalk": "^4.0.0",
 		"configstore": "^5.0.1",
 		"crypto-js": "^4.0.0",
 		"node-fetch": "^2.6.0",
-		"request-promise-native": "^1.0.8",
 		"unzipper": "^0.10.11"
 	}
 }
