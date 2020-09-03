@@ -2,6 +2,8 @@
 	"name": "appdrag-deployment-helper",
 	"displayName": "AppDrag Deployment Helper",
 	"description": "This is the VSCode extension for AppDrag. This extension much like the CLI will help you code your AppDrag projects locally and/or deploy them aswell.",
+	"publisher": "AppDrag",
+	"icon":"resources/logo.png",
 	"version": "0.0.1",
 	"engines": {
 		"vscode": "^1.42.0"
