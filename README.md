@@ -30,18 +30,28 @@ This is the VSCode extension for AppDrag. This extension much like the CLI will 
    `CloudBackend Push (Single Function)`		        Push one functions from LOCAL to your CloudBackend
    
    
-### Deployment
+### Export
 
-   `Deploy Filesystem`		                    Deploys all your non-CloudBackend related files to the specified folder
-   
-   `Deploy CloudBackend`           		        Deploys all the functions from your CloudBackend to the specified folder
+   `export  	<path>`		                    Export your project to the specified folder
 
-  `Deploy Database`           		        Deploys the database file from your CloudBackend to the specified folder
+
+## Usage
+
+### Login
+![LoginGif](https://raw.githubusercontent.com/AppDrag/appdrag-vscode-extension/master/resources/appdrag-login.gif)
+
+### Init AppId
+![AppIdGif](https://raw.githubusercontent.com/AppDrag/appdrag-vscode-extension/master/resources/appdrag-init.gif)
+
+### Filesystem Pull
+![PushGif](https://raw.githubusercontent.com/AppDrag/appdrag-vscode-extension/master/resources/appdrag-file-pull.gif)
+
+### Filesystem Push
+![PushGif](https://raw.githubusercontent.com/AppDrag/appdrag-vscode-extension/master/resources/appdrag-file-push.gif)
+
 
 
 ## Release Notes
-
-Users appreciate release notes as you update your extension.
 
 ### 1.0.0
 
