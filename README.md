@@ -1,6 +1,12 @@
 ![AppDragLogo](https://raw.githubusercontent.com/AppDrag/appdrag-vscode-extension/master/resources/logo.png)
-# AppDrag VSCode Deployment Helper 
+# APPDRAG for Visual Studio Code 
 This is the VSCode extension for AppDrag. This extension much like the CLI will help you code your AppDrag projects locally and/or deploy them aswell.
+
+## Setup
+* Install
+* Run `Appdrag: Login`
+* Run `Appdrag: Init`
+* You're ready to work !
 
 ## Features
 ### All commands start with 'AppDrag :'
