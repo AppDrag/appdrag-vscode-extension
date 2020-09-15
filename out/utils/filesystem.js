@@ -46,7 +46,6 @@ exports.createZip = (targetToZip, destPath) => __awaiter(void 0, void 0, void 0,
     return isErr;
 });
 exports.pushZip = (targetToZip, destPath) => {
-    console.log(targetToZip, destPath);
     return new Promise((resolve, reject) => {
         let zipFile = fs.createWriteStream(destPath);
         let archive = archiver('zip', {

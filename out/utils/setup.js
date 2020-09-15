@@ -24,7 +24,6 @@ function loginRequest(email, password) {
             headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8' },
             body: new url_1.URLSearchParams(data),
         });
-        console.log(response);
         return yield response.json();
     });
 }

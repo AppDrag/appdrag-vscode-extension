@@ -89,7 +89,6 @@ function filesystemPull() {
             folder = '';
         }
         let files = yield filesystem_1.getDirectoryListing(token, appId, folder);
-        console.log(files, token, appId);
         if (files.status === 'KO') {
             let token_ref = common_1.config.get('refreshToken');
             yield common_1.refreshToken(token_ref);

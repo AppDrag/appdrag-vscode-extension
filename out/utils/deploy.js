@@ -241,7 +241,6 @@ exports.flattenFunctionList = (functions) => {
             }
         }
     });
-    console.log(finalObj);
     return finalObj;
 };
 const writeSelectVSQLFile = (functionObj, filePath) => {
