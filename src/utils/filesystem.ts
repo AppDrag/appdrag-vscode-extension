@@ -41,7 +41,6 @@ export const createZip = async (targetToZip: string, destPath: string): Promise<
 };
 
 export const pushZip = (targetToZip: string, destPath: string) => {
-  console.log(targetToZip, destPath);
   return new Promise((resolve, reject) => {
     let zipFile = fs.createWriteStream(destPath);
     let archive = archiver('zip', {

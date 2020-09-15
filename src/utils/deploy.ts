@@ -227,7 +227,6 @@ export const flattenFunctionList = (functions: any) => {
       }
     }
   });
-  console.log(finalObj);
   return finalObj;
 };
 

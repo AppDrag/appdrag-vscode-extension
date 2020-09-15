@@ -14,7 +14,6 @@ export async function loginRequest (email : string, password : string): Promise<
         headers : {'Content-Type' :'application/x-www-form-urlencoded;charset=utf-8'},
         body : new URLSearchParams(data),
     });
-    console.log(response)
     return await response.json();
 }
 

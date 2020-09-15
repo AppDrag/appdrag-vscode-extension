@@ -74,7 +74,6 @@ export async function filesystemPull() {
     folder = '';
   }
   let files = await getDirectoryListing(token, appId, folder);
-  console.log(files, token, appId);
   if (files.status === 'KO') {
     let token_ref = config.get('refreshToken');
     await refreshToken(token_ref);
