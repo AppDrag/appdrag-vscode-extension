@@ -3,11 +3,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 // The module 'vscode' contains the VS Code extensibility API
 // Import the module and reference it with the alias vscode in your code below
 const vscode = require("vscode");
-const deploy_1 = require("./commands/deploy");
 const setup_1 = require("./commands/setup");
 const filesystem_1 = require("./commands/filesystem");
 const cloudbackend_1 = require("./commands/cloudbackend");
 const database_1 = require("./commands/database");
+const deploy_1 = require("./commands/deploy");
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
 function activate(context) {

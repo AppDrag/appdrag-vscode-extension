@@ -2,11 +2,11 @@
 // Import the module and reference it with the alias vscode in your code below
 import * as vscode from 'vscode';
 import { ServerResponse } from 'http';
-import { exportProject } from './commands/deploy';
 import { login, init } from './commands/setup';
 import { filesystemPull, filesystemPush } from './commands/filesystem';
 import { apiPull, apiPush, apiPullSingle, apiPushSingle } from './commands/cloudbackend';
 import { databasePull, databasePush } from './commands/database';
+import { exportProject } from './commands/deploy';
 
 
 // this method is called when your extension is activated

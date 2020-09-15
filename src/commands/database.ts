@@ -44,7 +44,7 @@ export async function databasePull() {
     throw new Error('Please run the init command first.');
   }
   let token = config.get('token');
-  await downloadDb(appId, token, currentFolder.uri.fsPath);
+  await downloadDb(appId, token, `${currentFolder.uri.fsPath}/${appId}_backup.sql`);
   vscode.window.showInformationMessage('Done !');
 }
 

@@ -86,8 +86,8 @@ function exportProject() {
         }
         vscode.window.showInformationMessage('Pulling...');
         yield deployDatabase(appId, token, currentFolder, absolutePath);
-        yield deployFilesystem(appId, token, currentFolder, absolutePath);
-        yield deployCloudBackend(appId, token, currentFolder, absolutePath);
+        // await deployFilesystem(appId, token, currentFolder, absolutePath);
+        // await deployCloudBackend(appId, token, currentFolder, absolutePath);
         vscode.window.showInformationMessage('Done !');
     });
 }

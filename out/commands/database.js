@@ -56,7 +56,7 @@ function databasePull() {
             throw new Error('Please run the init command first.');
         }
         let token = common_1.config.get('token');
-        yield database_1.downloadDb(appId, token, currentFolder.uri.fsPath);
+        yield database_1.downloadDb(appId, token, `${currentFolder.uri.fsPath}/${appId}_backup.sql`);
         vscode.window.showInformationMessage('Done !');
     });
 }
